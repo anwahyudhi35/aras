@@ -119,12 +119,13 @@ foreach ($_POST['guna'] as $gunawan) {
                        <thead>  
                            <tr>
                                <th>Nama Tumbuhan</th>
+                               <th>Nama Latin</th>
                                <th>Jenis Tumbuhan</th>
                                <th>Bagian Tumbuhan</th>
                                <th>Cara Pengolahan</th>
                                <th>Cara Penggunaan</th>
                                <th>Khasiat</th>
-                               <th onclick="sortTable(7)">Qi</th>
+                               <th>Qi</th>
                            </tr>
                        </thead>
                        <tbody>
@@ -145,6 +146,7 @@ foreach ($_POST['guna'] as $gunawan) {
                                 <td><a href="wiki_tumbuhan.php?pohon=<?php echo $data['id_tumbuhan'] ?>">
                                 <?php echo $data['nama_tumbuhan'] ?>    
                                 </a></td>
+                                <td><i><?php echo $data['latin']; ?></i></td>
                                 <td><?php echo $data['jenis_tumbuhan'] ?></td>
                                 <td><?php 
                                     if ($data['bagian_tumbuhan'] == 'KulitBatang') {
@@ -204,7 +206,7 @@ foreach ($_POST['guna'] as $gunawan) {
   table = document.getElementById("myTable");
   switching = true;
   // Set the sorting direction to ascending:
-  dir = "asc";
+  dir = "desc";
   /* Make a loop that will continue until
   no switching has been done: */
   while (switching) {
