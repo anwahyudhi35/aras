@@ -6,8 +6,9 @@ $nama = $_POST['nama'];
 $jenis = $_POST['jenis'];
 $olahan = $_POST['diolah'];
 $guna = $_POST['digunakan'];
-$khasiat = $_POST['khasiat'];
 $latin = $_POST['latin'];
+$khasiat = $_POST['khasiat'];
+
 $resep = $_POST['resep'];
 //upload gambar 
 $gambarnama = $_FILES['gambar']['name'];
@@ -16,15 +17,40 @@ $gambarnama = $_FILES['gambar']['name'];
 $file_ext = explode('.', $gambarnama);
 $flex = strtolower(end($file_ext));
 
-$filenamenew = $nama.".".$flex;
+$filenamenew = $gambarnama;
 $simpan = '../../gambar/'.$filenamenew;
 
-$sql=mysqli_query($dbh,"UPDATE tumbuhan_obat set nama_tumbuhan='$nama', jenis_tumbuhan = '$jenis', cara_pengolahan = '$olahan', cara_penggunaan = '$guna', khasiat = '$khasiat', gambar = '$filenamenew', resep = '$resep', latin = '$latin' WHERE id_tumbuhan = '$id'"); 
-if ($sql) {
-	move_uploaded_file($_FILES['gambar']['tmp_name'], $simpan);
-    echo "<script>alert('Data berhasil tersimpan');document.location='data-tanaman-admin.php' </script>";
-}else {
-    echo "<script>alert('Data gagal iubah');document.location='data-tanaman-admin.php' </script> ";
-    
+if (empty($tmp_file)) {
+	$sql=mysqli_query($dbh,"UPDATE tumbuhan_obat set nama_tumbuhan='$nama', jenis_tumbuhan = '$jenis', cara_pengolahan = '$olahan', cara_penggunaan = '$guna', khasiat = '$khasiat', resep = '$resep', latin = '$latin' WHERE id_tumbuhan = '$id'"); 
+			if ($sql) {
+    			echo "<script>alert('Data berhasil tersimpan');document.location='data-tanaman-admin.php' </script>";
+			}else {
+    			echo "<script>alert('Maaf, Terjadi kesalahan saat mencoba untuk menyimpan data ke database.');document.location='data-tanaman-admin.php' </script>";
+    		}
+}
+else{
+
+if ($tipe_file = "image/jpeg" || $tipe_file = "image/png") {
+	if ($ukuran_file <= 2000000) {
+		if(move_uploaded_file($tmp_file, $simpan)){
+			$sql=mysqli_query($dbh,"UPDATE tumbuhan_obat set nama_tumbuhan='$nama', jenis_tumbuhan = '$jenis', cara_pengolahan = '$olahan', cara_penggunaan = '$guna', khasiat = '$khasiat', gambar = '$filenamenew', resep = '$resep', latin = '$latin' WHERE id_tumbuhan = '$id'"); 
+			if ($sql) {
+    			echo "<script>alert('Data berhasil tersimpan');document.location='data-tanaman-admin.php' </script>";
+			}else {
+    			echo "<script>alert('Maaf, Terjadi kesalahan saat mencoba untuk menyimpan data ke database.');document.location='data-tanaman-admin.php' </script>";
+    		}
+
+
+	}else{
+		echo "<script>alert('Maaf, Gambar gagal untuk diupload.');document.location='data-tanaman-admin.php' </script>";
+	}
+}else{
+	echo "<script>alert('Maaf, Ukuran gambar yang diupload tidak boleh lebih dari 2MB');document.location='data-tanaman-admin.php' </script>";
+}
+
+}else{
+	echo "<script>alert('Maaf, Tipe gambar yang diupload harus JPG / JPEG / PNG.');document.location='data-tanaman-admin.php' </script>";
+}
+
 }
 ?>

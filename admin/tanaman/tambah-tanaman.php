@@ -55,7 +55,7 @@ session_start();
             <div id="content">
 
                 <nav class="navbar navbar-default">
-                    <div class="container-fluid">
+                    <div class="container">
 
                         <div class="navbar-header">
                             <button type="button" id="sidebarCollapse" class="btn btn-warning navbar-btn">
@@ -93,6 +93,7 @@ session_start();
                 -->
                   
                 <div class="panel panel-body">
+                  <div class="col-md-6 col-md-offset-3 text-center">
                   <form class="form" action="menanam.php" method="POST" enctype="multipart/form-data">
                   	<div class="form-group">
                   		<label>Nama Tumbuhan</label>
@@ -170,6 +171,7 @@ session_start();
                     <div class="form-group">
                       <label> gambar </label>
                       <input type="file" name="gambar" class="form-control">
+                      <font color="red"><b>*file png/jpg dan ukuran maksimal 2mb </b><br></font>
                     </div>
                   	<div class="form-group">
 							<input type="reset" required name="Reset" class="btn btn-warning pull-right btn-fill"> 
@@ -178,7 +180,7 @@ session_start();
                   </form>
         	
                   
-                
+                </div>
 
                 </div>
         </div>
