@@ -6,13 +6,14 @@ $nama = $_POST['nama'];
 $jenis = $_POST['jenis'];
 $olahan = $_POST['diolah'];
 $guna = $_POST['digunakan'];
-$latin = $_POST['latin'];
 $khasiat = $_POST['khasiat'];
-
 $resep = $_POST['resep'];
+$latin = $_POST['latin'];
 //upload gambar 
 $gambarnama = $_FILES['gambar']['name'];
-
+$ukuran_file = $_FILES['gambar']['size'];
+$tipe_file = $_FILES['gambar']['type'];
+$tmp_file = $_FILES['gambar']['tmp_name'];
 
 $file_ext = explode('.', $gambarnama);
 $flex = strtolower(end($file_ext));

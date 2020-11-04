@@ -1,4 +1,4 @@
-    <?php
+<?php
 include '../../koneksi.php';
 
 
@@ -11,17 +11,15 @@ $khasiat = $_POST['khasiat'];
 $resep = $_POST['resep'];
 $latin = $_POST['latin'];
 
-
-//upload gambar 
 $gambarnama = $_FILES['gambar']['name'];
-
-
+$ukuran_file = $_FILES['gambar']['size'];
+$tipe_file = $_FILES['gambar']['type'];
+$tmp_file = $_FILES['gambar']['tmp_name'];
 $file_ext = explode('.', $gambarnama);
 $flex = strtolower(end($file_ext));
 
 $filenamenew = $gambarnama;
 $simpan = '../../gambar/'.$filenamenew;
-//
 
 if ($tipe_file = "image/jpeg" || $tipe_file = "image/png") {
 	if ($ukuran_file <= 2000000) {
@@ -32,6 +30,8 @@ if ($tipe_file = "image/jpeg" || $tipe_file = "image/png") {
 			}else {
     			echo "<script>alert('Maaf, Terjadi kesalahan saat mencoba untuk menyimpan data ke database.');document.location='data-tanaman-admin.php' </script>";
     		}
+
+
 	}else{
 		echo "<script>alert('Maaf, Gambar gagal untuk diupload.');document.location='data-tanaman-admin.php' </script>";
 	}
