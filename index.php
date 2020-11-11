@@ -79,6 +79,9 @@
                 </div>
                 <div class="panel-body">
                 <p>Sebelum beralih ke obat dokter, sudah jadi kebiasaan orang-orang Indonesia untuk lebih dulu mencoba “berobat” pakai jamu-jamuan dari tanaman obat. Tanaman obat itu sendiri punya ribuan jenis spesies. Nah dari total 40 ribu macam tanaman obat yang ada di dunia, ternyata hampir 90%-nya berhabitat di Indonesia. Menguntungkan, bukan? Namun begitu, hanya sekitar 9.000 spesies saja yang diduga kuat memiliki khasiat obat, dan bisa Anda tanam sendiri di rumah. </p>
+                <p>
+                    bhhvhvhvhv
+                </p>
                 </div>
                 <a href="data_tanaman.php" class="btn btn-warning">Tanaman Hutan Obat</a>
                 <a href="rekomendasi.php" class="btn btn-warning">Rekomendasi Obat Penyakit</a>

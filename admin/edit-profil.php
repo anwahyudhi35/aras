@@ -16,9 +16,9 @@ $data=mysqli_fetch_array($query);
         <title>SISTEM PENDUKUNG KEPUTUSAN PEMILIHAN TUMBUHAN HUTAN BERKHASIAT OBAT UNTUK PENYAKIT KULIT</title>
 
          <!-- Bootstrap CSS CDN -->
-        <link rel="stylesheet" href="../../asset/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="../asset/bootstrap/css/bootstrap.css">
         <!-- Our Custom CSS -->
-        <link rel="stylesheet" href="../../asset/index.css">
+        <link rel="stylesheet" href="../asset/index.css">
     </head>
     <body>
 
@@ -60,7 +60,7 @@ $data=mysqli_fetch_array($query);
             <div id="content">
 
                 <nav class="navbar navbar-default">
-                    <div class="container-fluid">
+                    <div class="container">
 
                         <div class="navbar-header">
                             <button type="button" id="sidebarCollapse" class="btn btn-warning navbar-btn">
@@ -90,6 +90,7 @@ $data=mysqli_fetch_array($query);
                 </div>
               </center>
                 <div class="panel panel-body">
+                  <div class="col-md-6 col-md-offset-3 text-center">
                  <form class="form" action="henshin.php?siapa=<?php echo $data['id_admin'] ?>" method="POST" enctype="multipart/form-data">
                   <div class="form-group">
                     <label>Username</label>
@@ -115,14 +116,14 @@ $data=mysqli_fetch_array($query);
 
 
               <input type="reset" required name="Reset" class="btn btn-warning pull-right btn-fill"> 
-              <input type="submit" required name="ganti" value = "Simpan" class="btn btn-success btn-fill" onclick="return confirm('Apa anda yakin dengan Perubahan Data Profil?');">
+              <input type="submit" required name="ganti" value = "Simpan" class="btn btn-success btn-fill pull-left" onclick="return confirm('Apa anda yakin dengan Perubahan Data Profil?');">
         </div>
                   </form>
           
           
                   
                 
-
+</div>
                 </div>
 
 

@@ -5,7 +5,7 @@ $guna = $_POST['guna'];
 $bagian = $_POST['bagian'];
 $jenis = $_POST['jenis'];
 $olah = $_POST['olah'];
-
+$ti = 0;
 $rekomendasi = array();
 foreach ($_POST['guna'] as $gunawan) {
                               foreach ($_POST['olah'] as $olahan) {
@@ -16,12 +16,15 @@ foreach ($_POST['guna'] as $gunawan) {
                            $hasil = mysqli_query($dbh,$sql) or die(mysqli_error());
  
                               while ($data = $hasil->fetch_assoc()) {
-                              $rekomendasi = $data;
+                              $rekomendasi[$ti] = $data;
+                              $ti++;
                               }
                             }
                           }
                         }
                       }
+
+                    
  ?>
 
 <!DOCTYPE html>
@@ -72,13 +75,18 @@ foreach ($_POST['guna'] as $gunawan) {
                     </li>
 
                 <ul class="list-unstyled CTAs">
-                    <hr>
+                    <li><hr>
                     <center>
                         <h4><?php echo date('Y') ?></h4>
                     </center>
-                    <hr>  
+                    <hr></li>
+                      
                 </ul>
+                <center>
+                 sadsads
+                </center>
             </nav>
+
 
             <!-- Page Content Holder -->
             <div id="content">
@@ -106,10 +114,12 @@ foreach ($_POST['guna'] as $gunawan) {
                 <?php if (empty($rekomendasi)){ ?>
                     <div class="panel panel-heading">
                     <h2>Tidak Menemukan Hasil Rekomendasi Penyakit <?php echo $sakit ?></h2>
+                    <a href="rekomendasi.php" class="btn btn-warning">Kembali</a>
+                
                 </div>
                   <?php }else{ ?>
                 <div class="panel panel-heading">
-                    <h2>Hasil Rekomendasi Penyakit <?php echo $sakit ?></h2>
+                    <h2>Hasil Rekomendasi Penyakit <span id="sakit"><?php echo $sakit ?></span></h2>
                 </div>
     
                 <div class="panel-body">
@@ -144,8 +154,8 @@ foreach ($_POST['guna'] as $gunawan) {
                             ?>
                             <tr>
                                 <td><a href="wiki_tumbuhan.php?pohon=<?php echo $data['id_tumbuhan'] ?>">
-                                <?php echo $data['nama_tumbuhan'] ?>    
-                                </a></td>
+                                <span id="nama"><?php echo $data['nama_tumbuhan'] ?>    
+                                </span></a></td>
                                 <td><i><?php echo $data['latin']; ?></i></td>
                                 <td><?php echo $data['jenis_tumbuhan'] ?></td>
                                 <td><?php 
@@ -175,9 +185,10 @@ foreach ($_POST['guna'] as $gunawan) {
                          ?>
                        </tbody>
                    </table>
-                   
+                <h3 ><span id="hasil"></span></h3>   
                 <br><br><br>
                 </center>
+
                 </div>
               <?php } ?>
                 
@@ -253,9 +264,13 @@ foreach ($_POST['guna'] as $gunawan) {
         switching = true;
       }
     }
-  }
+  } 
+  var sakit = document.getElementById("sakit").innerHTML; 
+  var namax=document.getElementById("nama").innerHTML;
+    document.getElementById("hasil").innerHTML= "Untuk penyakit "+sakit+", "+ namax+" merupakan tumbuhan yang paling direkomendasikan"; 
 }
          </script>
 
     </body>
 </html>
+"untuk penyakit "+ +", "++"merupakan tumbuhan yang paling direkomendasika"
