@@ -124,7 +124,7 @@ foreach ($_POST['guna'] as $gunawan) {
     
                 <div class="panel-body">
 
-                
+  
                     <table class="table table-responsive table-hover table-bordered" id="myTable">
                        <thead>  
                            <tr>
@@ -267,10 +267,11 @@ foreach ($_POST['guna'] as $gunawan) {
   } 
   var sakit = document.getElementById("sakit").innerHTML; 
   var namax=document.getElementById("nama").innerHTML;
-    document.getElementById("hasil").innerHTML= "Untuk penyakit "+sakit+", "+ namax+" merupakan tumbuhan yang paling direkomendasikan"; 
+  document.getElementById("hasil").innerHTML= "Untuk penyakit "+sakit+", "+ namax+" merupakan tumbuhan yang paling direkomendasikan"; 
+
+  
 }
          </script>
 
     </body>
 </html>
-"untuk penyakit "+ +", "++"merupakan tumbuhan yang paling direkomendasika"
