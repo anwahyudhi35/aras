@@ -915,7 +915,7 @@ session_start();
                                              <td>
                                                 <?php 
                                                 if($datas['cara_pengolahan'] == "Ditumbuk") {
-                                                    $opt1[$no] = $norm1[$no]* $eigen[1];
+                                                    $opt1[$no] = $norm1[$no] * $eigen[1];
                                                 echo $opt1[$no];
                                                 }elseif($datas['cara_pengolahan'] == "Direbus") {
                                                     
@@ -1088,7 +1088,7 @@ session_start();
                                             foreach ($dbh->query($sql) as $datas) :
                                         ?>
                                         <tr>
-                                            <td><?php echo ($no+1); ?></td>
+                                             <td><?php echo ($no+1); ?></td>
                                              <td><?php echo $datas['nama_tumbuhan']; ?></td>
                                              <td><?php echo $datas['qi']; ?></td>
                                         </tr>
@@ -7015,7 +7015,7 @@ session_start();
                                              <td>
                                                 <?php 
                                                 if($datas['cara_pengolahan'] == "Ditumbuk") {
-                                                    $opt1[$no] = $norm1[$no]* $eigen[1];
+                                                    $opt1[$no] = $norm1[$no] * $eigen[1];
                                                 echo $opt1[$no];
                                                 }elseif($datas['cara_pengolahan'] == "Direbus") {
                                                     
