@@ -5,25 +5,37 @@ $guna = $_POST['guna'];
 $bagian = $_POST['bagian'];
 $jenis = $_POST['jenis'];
 $olah = $_POST['olah'];
+
 $ti = 0;
 $rekomendasi = array();
+$rangking = array();
 foreach ($_POST['guna'] as $gunawan) {
                               foreach ($_POST['olah'] as $olahan) {
                                 foreach ($_POST['jenis'] as $jenius) {
                                     foreach ($_POST["bagian"] as $bagio) {
                             
-                            $sql = "select tumbuhan_obat.* from tumbuhan_obat where khasiat = '$sakit' AND cara_penggunaan = '$gunawan' AND cara_pengolahan = '$olahan' AND jenis_tumbuhan = '$jenius' AND bagian_tumbuhan = '$bagio' ORDER BY qi DESC";
+                            $sql = "select tumbuhan_obat.* from tumbuhan_obat where khasiat = '$sakit' AND cara_penggunaan = '$gunawan' AND cara_pengolahan = '$olahan' AND jenis_tumbuhan = '$jenius' AND bagian_tumbuhan = '$bagio'";
                            $hasil = mysqli_query($dbh,$sql) or die(mysqli_error());
  
                               while ($data = $hasil->fetch_assoc()) {
                               $rekomendasi[$ti] = $data;
+                              $rangking[$ti] = $data["qi"];
                               $ti++;
                               }
                             }
                           }
                         }
                       }
+$atas = max($rangking);
+$bawah = min($rangking);
+$jumlah = count($rangking);
+rsort($rangking);
 
+$juara =[];
+$sinta = 0;
+for ($xy=0; $xy < $jumlah ; $xy++) { 
+  $juara[$rangking[$xy]] = $sinta+$xy;
+}
                     
  ?>
 
@@ -136,11 +148,13 @@ foreach ($_POST['guna'] as $gunawan) {
                                <th>Cara Penggunaan</th>
                                <th>Khasiat</th>
                                <th>Qi</th>
+                               <th>Urutan Ranking</th>
                            </tr>
                        </thead>
                        <tbody>
                            <?php
-                           $no  = 1;
+                           $no  = 0;
+                           $rank = 1;
                            
                            foreach ($guna as $gunawan) {
                             
@@ -169,6 +183,11 @@ foreach ($_POST['guna'] as $gunawan) {
                                 <td><?php echo $data['cara_penggunaan'] ?></td>
                                 <td><?php echo $data['khasiat'] ?></td>
                                 <td><?php echo $data['qi'] ?></td>
+                                <td><?php
+                                $orang = $data['qi'];
+                                  echo array_search($orang,  array_keys($juara))+1;
+                                  
+                                ?></td>
                             </tr>
                             <?php
                           
