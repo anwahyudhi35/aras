@@ -26,8 +26,6 @@ foreach ($_POST['guna'] as $gunawan) {
                           }
                         }
                       }
-$atas = max($rangking);
-$bawah = min($rangking);
 $jumlah = count($rangking);
 rsort($rangking);
 
@@ -53,6 +51,8 @@ for ($xy=0; $xy < $jumlah ; $xy++) {
         <link rel="stylesheet" href="asset/bootstrap/css/bootstrap.css">
         <!-- Our Custom CSS -->
         <link rel="stylesheet" href="asset/index.css">
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    
     </head>
     <body onload="sortTable(7)">
 
@@ -204,13 +204,22 @@ for ($xy=0; $xy < $jumlah ; $xy++) {
                          ?>
                        </tbody>
                    </table>
-                <h3 ><span id="hasil"></span></h3>   
+                <h3 ><span id="hasil"> 
+                </span></h3>   
+                <hr>
+                <h3>
+                <span id="judul-chart"></span>
+                </h3>
+                <div id="chart" style="width: 100%; height: 500px;"></div>  
+                <hr>
                 <br><br><br>
                 </center>
-
-                </div>
+                
+                
               <?php } ?>
                 
+              
+                </div>
 
                 </div>
         </div>
@@ -287,8 +296,32 @@ for ($xy=0; $xy < $jumlah ; $xy++) {
   var sakit = document.getElementById("sakit").innerHTML; 
   var namax=document.getElementById("nama").innerHTML;
   document.getElementById("hasil").innerHTML= "Untuk penyakit "+sakit+", "+ namax+" merupakan tumbuhan yang paling direkomendasikan"; 
-
+  document.getElementById("judul-chart").innerHTML= "Prioritas Alternatif untuk Penyakit "+sakit;
   
+}
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+// Draw the chart and set the chart values
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+  ['Task', 'Hours per Day'],
+  <?php 
+
+    foreach ($rekomendasi as $tabel) {
+      echo "['".$tabel['nama_tumbuhan']."', ".$tabel['qi']."],";
+    }
+
+   ?>
+]);
+
+  // Optional; add a title and set the width and height of the chart
+  var options = {};
+
+  // Display the chart inside the <div> element with id="piechart"
+  var chart = new google.visualization.PieChart(document.getElementById('chart'));
+  chart.draw(data, options);
 }
          </script>
 
